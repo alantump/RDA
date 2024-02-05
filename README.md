@@ -1,10 +1,9 @@
 # Vorlesungscode - Evaluation der Wirksamkeit psychologischer Interventionen anhand von Regressions-Diskontinuitäts-Analysen
 
-Der Code um die Grafiken und die regressions Analyse durchzuführen.
-Die fiktiven Daten um die Analyse durchzuführen ("evaluation.csv").
+Beinhaltet den Code um die Grafiken und die regressions Analyse durchzuführen, und fiktiven Daten um die Analyse durchzuführen ("evaluation.csv").
 
 
-Variablen sind:
+Variablen in der Tabelle sind:
 - Haushaltseinkommen (Tsd. Euro)
 - Gesundheitsausgaben (Tsd. Euro)
 - Alter (Jahre)
