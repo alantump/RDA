@@ -39,23 +39,23 @@ examp <- ggplot(data=dd,aes(x=x,y=y,group=g)) +
   
  
  p_dichte <- df_eval %>% 
-   mutate(r_einkommen = floor(einkommen)+0.5) %>%
-   group_by(r_einkommen, teilnahme_fak) %>% 
-   summarise(Dichte = length(r_einkommen)) %>%
- ggplot(aes(y = Dichte, x = r_einkommen, group = teilnahme_fak, colour = teilnahme_fak, fill = teilnahme_fak)) +
+   mutate(r_armuts_index = floor(armuts_index)+0.5) %>%
+   group_by(r_armuts_index, teilnahme_fak) %>% 
+   summarise(Dichte = length(r_armuts_index)) %>%
+ ggplot(aes(y = Dichte, x = r_armuts_index, group = teilnahme_fak, colour = teilnahme_fak, fill = teilnahme_fak)) +
    geom_vline(xintercept = 50) +
    geom_point() +
    geom_smooth() +
-   labs(x = "Haushaltseinkommen (Tsd. Euro)")  + 
+   labs(x = "Armutsindex")  + 
    scale_colour_viridis_d("Teilnahme:", end = 0.7) +
    scale_fill_viridis_d("Teilnahme:", end = 0.7) + theme_bw()#
  
  
  p_teilnahme <- df_eval %>% 
-   ggplot(aes(y = teilnahme_fak, x = einkommen)) +
+   ggplot(aes(y = teilnahme_fak, x = armuts_index)) +
    geom_vline(xintercept = 50) +
    geom_point() +
-   labs(x = "Haushaltseinkommen (Tsd. Euro)",
+   labs(x = "Armutsindex",
         y = "Teilnahme") +
    theme_bw()
   
@@ -63,32 +63,32 @@ examp <- ggplot(data=dd,aes(x=x,y=y,group=g)) +
  
  
  p_rda <- df_eval %>%
-   ggplot(aes(x = einkommen , y = gesundh_ausgaben ,
+   ggplot(aes(x = armuts_index , y = gesundh_ausgaben ,
               group = teilnahme_fak, colour = teilnahme_fak, fill = teilnahme_fak)) +
    geom_point(alpha = 0.03) +
    geom_smooth(method = "lm") +
-   labs(x = "Haushaltseinkommen (Tsd. Euro)", y = "Gesundheitsausgaben (Tsd. Euro)") +
+   labs(x = "Armutsindex", y = "Gesundheitsausgaben (Tsd. Euro)") +
    scale_colour_viridis_d("Teilnahme:", end = 0.7) +
    scale_fill_viridis_d("Teilnahme:", end = 0.7)  + theme_bw()
  
  
  
  p_rda_raw <- df_eval %>%
-   ggplot(aes(x = einkommen , y = gesundh_ausgaben ,
+   ggplot(aes(x = armuts_index , y = gesundh_ausgaben ,
               group = teilnahme_fak, colour = teilnahme_fak, fill = teilnahme_fak)) +
    geom_point(alpha = 0.03) +
    #geom_smooth(method = "lm") +
-   labs(x = "Haushaltseinkommen (Tsd. Euro)", y = "Gesundheitsausgaben (Tsd. Euro)") +
+   labs(x = "Armutsindex", y = "Gesundheitsausgaben (Tsd. Euro)") +
    scale_colour_viridis_d("Teilnahme:", end = 0.7) +
    scale_fill_viridis_d("Teilnahme:", end = 0.7)  + theme_bw()
  
  
 p_alter <-  df_eval %>%
-   ggplot(aes(x = einkommen, y = alter,
+   ggplot(aes(x = armuts_index, y = alter,
               group = teilnahme_fak, colour = teilnahme_fak, fill = teilnahme_fak)) +
    geom_point(alpha = 0.03) +
    geom_smooth(method = "loess") +
-   labs(x = "Haushaltseinkommen (Tsd. Euro)", y = "Alter (Jahren)") +
+   labs(x = "Armutsindex", y = "Alter (Jahren)") +
    scale_colour_viridis_d("Teilnahme:", end = 0.7) +
    scale_fill_viridis_d("Teilnahme:", end = 0.7)  + theme_bw()
 
@@ -96,22 +96,22 @@ p_alter <-  df_eval %>%
 
 
 p_krank <-  df_eval %>%
-   ggplot(aes(x = einkommen, y = alter,
+   ggplot(aes(x = armuts_index, y = alter,
               group = teilnahme_fak, colour = teilnahme_fak, fill = teilnahme_fak)) +
    geom_point(alpha = 0.03) +
    geom_smooth(method = "loess") +
-   labs(x = "Haushaltseinkommen (Tsd. Euro)", y = "Entf. vom Krankhaus (km)") +
+   labs(x = "Armutsindex", y = "Entf. vom Krankhaus (km)") +
    scale_colour_viridis_d("Teilnahme:", end = 0.7) +
    scale_fill_viridis_d("Teilnahme:", end = 0.7)  + theme_bw()
 
 
 
 p_rda <- df_eval %>%
-   ggplot(aes(x = einkommen , y = gesundh_ausgaben ,
+   ggplot(aes(x = armuts_index , y = gesundh_ausgaben ,
               group = teilnahme_fak, colour = teilnahme_fak, fill = teilnahme_fak)) +
    geom_point(alpha = 0.03) +
    geom_smooth(method = "lm") +
-   labs(x = "Haushaltseinkommen (Tsd. Euro)", y = "Gesundheitsausgaben (Tsd. Euro)") +
+   labs(x = "Armutsindex", y = "Gesundheitsausgaben (Tsd. Euro)") +
    scale_colour_viridis_d("Teilnahme:", end = 0.7) +
    scale_fill_viridis_d("Teilnahme:", end = 0.7)  + theme_bw()
 
@@ -124,7 +124,7 @@ p_rda <- df_eval %>%
 #eine Steigung
 summary(
   lm(
-    gesundh_ausgaben ~ teilnahme + I(einkommen - 50)  + I(einkommen - 50),
+    gesundh_ausgaben ~ teilnahme + I(armuts_index - 50)  + I(armuts_index - 50),
       data = df_eval)) 
 
 
@@ -132,14 +132,14 @@ summary(
 # 2 Steigungen
 summary(
   lm(
-     gesundh_ausgaben ~ teilnahme + I(einkommen - 50)  + I(einkommen - 50):teilnahme,
+     gesundh_ausgaben ~ teilnahme + I(armuts_index - 50)  + I(armuts_index - 50):teilnahme,
     data = df_eval)) 
 
 
 
 # Bayesiansiche Statistik
 library(brms)
-brm( gesundh_ausgaben ~ teilnahme + I(einkommen - 50)  + I(einkommen - 50):teilnahme,
+brm( gesundh_ausgaben ~ teilnahme + I(armuts_index - 50)  + I(armuts_index - 50):teilnahme,
      data = df_eval)
 
 
