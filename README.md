@@ -4,7 +4,7 @@ Beinhaltet den Code um die Grafiken und die regressions Analyse durchzuführen, 
 
 
 Variablen in der Tabelle sind:
-- Haushaltseinkommen (Tsd. Euro)
+- Armutsindex
 - Gesundheitsausgaben (Tsd. Euro)
 - Alter (Jahre)
 - Enfernung zum Krankenhaus (km)
