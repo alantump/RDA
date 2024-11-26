@@ -11,4 +11,4 @@ Variablen in der Tabelle sind:
 - Teilnahme (Ja/Nein; 1/0)
 
 
-"Der Vortrag für das Auswahlverfahren für die Professur in Marburg ist als PDF gespeichert.
+Der Vortrag für das Auswahlverfahren für die Professur in Marburg ist als PDF gespeichert.
